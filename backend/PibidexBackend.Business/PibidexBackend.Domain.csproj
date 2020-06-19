@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Pibidex.Models\PibidexBackend.Entities.csproj" />
+    <ProjectReference Include="..\PibidexBackend.Common\PibidexBackend.Transversal.csproj" />
+    <ProjectReference Include="..\PibidexBackend.Contracts\PibidexBackend.Contracts.csproj" />
+    <ProjectReference Include="..\PibidexBackend.Data\PibidexBackend.Data.csproj" />
+  </ItemGroup>
+
+</Project>
