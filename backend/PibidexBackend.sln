@@ -9,13 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PibidexBackend.Entities", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PibidexBackend.Contracts", "PibidexBackend.Contracts\PibidexBackend.Contracts.csproj", "{D4BF37BF-ED32-4668-AF71-FED271916F36}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PibidexBackend.Domain", "PibidexBackend.Business\PibidexBackend.Domain.csproj", "{1D3607B2-3C68-40F9-92B9-2B963759161E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PibidexBackend.Business", "PibidexBackend.Business\PibidexBackend.Business.csproj", "{1D3607B2-3C68-40F9-92B9-2B963759161E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PibidexBackend.Data", "PibidexBackend.Data\PibidexBackend.Data.csproj", "{D95C02F4-B16A-45AB-8692-4FC5DDC62077}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PibidexBackend.Transversal", "PibidexBackend.Common\PibidexBackend.Transversal.csproj", "{F933FF7F-2E15-4D87-AF1B-71F3150AD9B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PibidexBackend.Common", "PibidexBackend.Common\PibidexBackend.Common.csproj", "{F933FF7F-2E15-4D87-AF1B-71F3150AD9B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PibidexBackend.IoC", "PibidexBackend.IoC\PibidexBackend.IoC.csproj", "{3806EE86-5398-4E4F-8129-28FA43C88050}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PibidexBackend.IoC", "PibidexBackend.IoC\PibidexBackend.IoC.csproj", "{3806EE86-5398-4E4F-8129-28FA43C88050}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

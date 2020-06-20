@@ -10,8 +10,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Pibidex.Models\PibidexBackend.Entities.csproj" />
-    <ProjectReference Include="..\PibidexBackend.Business\PibidexBackend.Domain.csproj" />
-    <ProjectReference Include="..\PibidexBackend.Common\PibidexBackend.Transversal.csproj" />
+    <ProjectReference Include="..\PibidexBackend.Business\PibidexBackend.Business.csproj" />
+    <ProjectReference Include="..\PibidexBackend.Common\PibidexBackend.Common.csproj" />
     <ProjectReference Include="..\PibidexBackend.IoC\PibidexBackend.IoC.csproj" />
   </ItemGroup>
 
