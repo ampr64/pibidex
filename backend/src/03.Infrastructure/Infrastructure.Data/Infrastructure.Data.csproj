@@ -14,8 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Pibidex.Models\PibidexBackend.Entities.csproj" />
-    <ProjectReference Include="..\PibidexBackend.Contracts\PibidexBackend.Contracts.csproj" />
+    <ProjectReference Include="..\..\02.Domain\Domain.Entities\Domain.Entities.csproj" />
+    <ProjectReference Include="..\..\04.Common\Common.Contracts\Common.Contracts.csproj" />
+    <ProjectReference Include="..\..\04.Common\Common.Extensions\Common.Extensions.csproj" />
   </ItemGroup>
 
 </Project>

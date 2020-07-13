@@ -3,9 +3,11 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
-
+  
   <ItemGroup>
-    <ProjectReference Include="..\Pibidex.Models\PibidexBackend.Entities.csproj" />
+    <Folder Include="Application\" />
+    <Folder Include="Domain\" />
+    <Folder Include="Infrastructure\" />
   </ItemGroup>
 
 </Project>
