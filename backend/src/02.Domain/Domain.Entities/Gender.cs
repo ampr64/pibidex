@@ -2,7 +2,7 @@
 
 namespace Domain.Entities
 {
-    public class Color : EntityBase<int>
+    public class Gender : EntityBase<int>
     {
     }
 }

@@ -1,11 +1,11 @@
-﻿using PibidexBackend.Entities.Base;
+﻿using Domain.Entities.Relationship;
+using Domain.Entities.Base;
+using System.Collections.Generic;
 
-namespace PibidexBackend.Entities
+namespace Domain.Entities
 {
     public class Type : EntityBase<int>
     {
-        public int GenerationId { get; set; }
-
-        public Generation Generation { get; set; }
+        public IList<PokemonType> PokemonTypes { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PibidexBackend.Entities.Enums
+namespace Domain.Entities.Enums
 {
     public enum ColorEnum
     {

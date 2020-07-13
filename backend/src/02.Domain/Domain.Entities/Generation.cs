@@ -1,6 +1,6 @@
-﻿using PibidexBackend.Entities.Base;
+﻿using Domain.Entities.Base;
 
-namespace PibidexBackend.Entities
+namespace Domain.Entities
 {
     public class Generation : EntityBase<int>
     {

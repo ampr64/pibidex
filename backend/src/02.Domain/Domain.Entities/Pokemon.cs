@@ -1,7 +1,8 @@
-﻿using PibidexBackend.Entities.Base;
+﻿using Domain.Entities.Relationship;
+using Domain.Entities.Base;
 using System.Collections.Generic;
 
-namespace PibidexBackend.Entities
+namespace Domain.Entities
 {
     public class Pokemon : EntityBase<int>
     {
@@ -13,7 +14,9 @@ namespace PibidexBackend.Entities
         public string ImageUrl { get; set; }
         public decimal Weight { get; set; }
 
+        public IList<PokemonAbility> PokemonAbilities { get; set; }
         public Generation Generation { get; set; }
-        public IList<Type> Types { get; set; }
+        public IList<PokemonType> PokemonTypes { get; set; }
+        public Species Species { get; set; }
     }
 }

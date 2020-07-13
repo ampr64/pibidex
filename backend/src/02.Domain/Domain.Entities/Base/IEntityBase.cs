@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace PibidexBackend.Entities.Base
+namespace Domain.Entities.Base
 {
     public interface IEntityBase<TPrimaryKey>
     {
         public TPrimaryKey Id { get; }
-        public string Name { get; set; }
+        public string Identifier { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime? UpdateDate { get; set; }
     }
