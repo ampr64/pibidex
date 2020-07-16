@@ -12,6 +12,7 @@ namespace Domain.Entities
         public string Description { get; set; }
         public decimal Height { get; set; }
         public string ImageUrl { get; set; }
+        public int Order { get; set; }
         public decimal Weight { get; set; }
 
         public IList<PokemonAbility> PokemonAbilities { get; set; }
