@@ -3,9 +3,10 @@ using System;
 
 namespace Pibidex.Domain.Common
 {
-    public abstract class Entity : IEquatable<Entity>
+    public abstract class Entity<TId> : IEquatable<Entity<TId>>
+        where TId : Id<TId>
     {
-        public int Id { get; protected set; }
+        public TId Id { get; protected set; } = null!;
 
         public Name Name { get; protected set; } = null!;
 
@@ -15,7 +16,7 @@ namespace Pibidex.Domain.Common
 
         protected Entity(Name name) => Name = name;
 
-        public static bool operator ==(Entity? left, Entity? right)
+        public static bool operator ==(Entity<TId>? left, Entity<TId>? right)
         {
             if (left is null)
                 return right is null;
@@ -23,25 +24,34 @@ namespace Pibidex.Domain.Common
             return left.Equals(right);
         }
 
-        public static bool operator !=(Entity? left, Entity? right) =>
+        public static bool operator !=(Entity<TId>? left, Entity<TId>? right) =>
             !(left! == right!);
 
-        public bool IsTransient() => Id.Equals(default);
+        public bool IsTransient() => Id is null;
 
         public override bool Equals(object? obj)
         {
-            if (obj == null || !(obj is Entity other))
+            if (obj is null || !(obj is Entity<TId> other))
                 return false;
 
-            return ReferenceEquals(this, obj) || Equals(other);
+            if (ReferenceEquals(this, other))
+                return true;
+
+            if (GetType() != other.GetType())
+                return false;
+
+            if (IsTransient() || other.IsTransient())
+                return false;
+
+            return Id.Equals(other.Id);
         }
 
-        public bool Equals(Entity? other)
+        public bool Equals(Entity<TId>? other)
         {
             if (other is null || IsTransient())
                 return false;
 
-            return Id.Equals(other.Id);
+            return GetType() == other.GetType() && Id.Equals(other.Id);
         }
 
         public override int GetHashCode() => Id.GetHashCode();

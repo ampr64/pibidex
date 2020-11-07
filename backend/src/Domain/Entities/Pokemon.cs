@@ -5,15 +5,15 @@ using Pibidex.Domain.ValueObjects;
 
 namespace Pibidex.Domain.Entities
 {
-    public class Pokemon : Entity
+    public class Pokemon : Entity<PokemonId>
     {
-        public int GenerationId { get; private set; }
+        public GenerationId GenerationId { get; set; } = null!;
 
         public Generation Generation { get; private set; } = null!;
 
-        public int SpeciesId { get; private set; }
+        public PokemonSpeciesId SpeciesId { get; set; } = null!;
 
-        public Species Species { get; private set; } = null!;
+        public PokemonSpecies Species { get; private set; } = null!;
 
         public string? Description { get; private set; }
 
@@ -21,47 +21,62 @@ namespace Pibidex.Domain.Entities
 
         public Weight Weight { get; private set; } = null!;
 
-        public Url ImageUrl { get; private set; } = null!;
+        public Url? ImageUrl { get; private set; }
 
-        public int PrimaryTypeId { get; private set; }
+        public PokemonTypeId PrimaryTypeId { get; private set; } = null!;
 
         public PokemonType PrimaryType { get; private set; } = null!;
 
-        public int? SecondaryTypeId { get; private set; }
+        public PokemonTypeId? SecondaryTypeId { get; private set; }
 
         public PokemonType? SecondaryType { get; private set; }
 
         private Pokemon() { }
 
-        public Pokemon(string name, int generationId, int speciesId, string? description, Height height,
-            Weight weight, Url imageUrl, int primaryTypeId, int? secondaryTypeId = null) : base(name)
+        public Pokemon(string name, GenerationId generationId, PokemonSpeciesId speciesId,
+            Height height, Weight weight, PokemonTypeId primaryTypeId, PokemonTypeId? secondaryTypeId = null,
+            Url? imageUrl = null, string? description = null) : base(name)
         {
-            GenerationId = Guard.Against.NegativeOrZero(generationId, nameof(generationId));
-            SpeciesId = Guard.Against.NegativeOrZero(speciesId, nameof(speciesId));
-            Description = description;
+            GenerationId = Guard.Against.Null(generationId, nameof(generationId));
+            SpeciesId = Guard.Against.Null(speciesId, nameof(speciesId));
             Height = Guard.Against.Null(height, nameof(height));
             Weight = Guard.Against.Null(weight, nameof(weight));
-            ImageUrl = Guard.Against.Null(imageUrl, nameof(imageUrl));
-            PrimaryTypeId = Guard.Against.NegativeOrZero(primaryTypeId, nameof(primaryTypeId));
-            SecondaryTypeId = secondaryTypeId;
+            ImageUrl = imageUrl;
+            SetDescription(description);
+            SetTypes(primaryTypeId, secondaryTypeId);
         }
 
         public void SetDescription(string? description) => Description = description;
 
-        public void UpdateDetails(Height height, Weight weight, Url imageUrl)
+        public void UpdateDetails(Height height, Weight weight, Url? imageUrl)
         {
             Height = Guard.Against.Null(height, nameof(height));
             Weight = Guard.Against.Null(weight, nameof(weight));
-            ImageUrl = Guard.Against.Null(imageUrl, nameof(imageUrl));
+            ImageUrl = imageUrl;
         }
 
-        public void ChangePrimaryType(int primaryTypeId) =>
-            PrimaryTypeId = Guard.Against.NegativeOrZero(primaryTypeId, nameof(primaryTypeId));
-
-        public void AddSecondaryType(int secondaryTypeId)
+        public void SetTypes(PokemonTypeId primaryTypeId, PokemonTypeId? secondaryTypeId)
         {
-            new PokemonMustNotHaveSecondaryTypeToAddSecondaryTypeRule(secondaryTypeId).Enforce();
-            SecondaryTypeId = Guard.Against.NegativeOrZero(secondaryTypeId, nameof(secondaryTypeId));
+            PrimaryTypeId = Guard.Against.Null(primaryTypeId, nameof(primaryTypeId));
+            SecondaryTypeId = secondaryTypeId;
+        }
+
+        public void ChangePrimaryType(PokemonTypeId primaryTypeId) =>
+            PrimaryTypeId = Guard.Against.Null(primaryTypeId, nameof(primaryTypeId));
+
+        public void AddSecondaryType(PokemonTypeId secondaryTypeId)
+        {
+            new PokemonMustNotHaveSecondaryTypeToAddSecondaryTypeRule(SecondaryTypeId).Enforce();
+            SecondaryTypeId = secondaryTypeId;
+        }
+
+        public void RemoveSecondaryType() => SecondaryTypeId = null;
+    }
+
+    public class PokemonId : Id<PokemonId>
+    {
+        public PokemonId(int value) : base(value)
+        {
         }
     }
 }

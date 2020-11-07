@@ -1,10 +1,11 @@
 ﻿using Pibidex.Domain.Common;
+using Pibidex.Domain.ValueObjects;
 
 namespace Pibidex.Domain.Entities
 {
-    public class Region : Entity
+    public class Region : Entity<RegionId>
     {
-        public int GenerationId { get; private set; }
+        public GenerationId GenerationId { get; private set; } = null!;
 
         public Generation Generation { get; private set; } = null!;
 
@@ -12,7 +13,17 @@ namespace Pibidex.Domain.Entities
 
         private Region() { }
 
-        public Region(string name, int generationId, string description) : base(name) =>
+        public Region(Name name, GenerationId generationId, string description) : base(name) =>
             (GenerationId, Description) = (generationId, description);
+
+        public void SetDescription(string? description) =>
+            Description = description;
+    }
+
+    public class RegionId : Id<RegionId>
+    {
+        public RegionId(int value) : base(value)
+        {
+        }
     }
 }

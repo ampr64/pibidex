@@ -2,7 +2,7 @@
 
 namespace Pibidex.Domain.Entities
 {
-    public class Ability : Entity
+    public class Ability : Entity<AbilityId>
     {
         public string? Description { get; private set; }
 
@@ -12,5 +12,12 @@ namespace Pibidex.Domain.Entities
             Description = description;
 
         public void SetDescription(string? description) => Description = description;
+    }
+
+    public class AbilityId : Id<AbilityId>
+    {
+        public AbilityId(int value) : base(value)
+        {
+        }
     }
 }
