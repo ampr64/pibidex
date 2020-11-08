@@ -38,11 +38,24 @@ namespace Pibidex.Domain.Common
 
         public override string ToString() => Name.ToString();
 
-        public static IEnumerable<TEnumeration> GetAll() => 
-            typeof(TEnumeration)
-            .GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly)
-            .Select(f => f.GetValue(null))
-            .Cast<TEnumeration>();
+        public static IEnumerable<TEnumeration> GetAll()
+        {
+            var baseType = typeof(TEnumeration);
+            var enumTypes = baseType.Assembly.GetTypes().Where(t => baseType.IsAssignableFrom(t));
+
+            var options = new List<TEnumeration>();
+            foreach (var enumType in enumTypes)
+            {
+                options.AddRange(
+                    enumType.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)
+                    .Where(fi => enumType.IsAssignableFrom(fi.FieldType))
+                    .Select(fi => fi.GetValue(null))
+                    .Cast<TEnumeration>()
+                    .ToList());
+            }
+
+            return options;
+        }
 
         public static TEnumeration FromId(TId id) =>
             Parse(id, nameof(id), item => item.Id.Equals(id));

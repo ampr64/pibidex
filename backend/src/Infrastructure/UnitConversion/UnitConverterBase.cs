@@ -1,5 +1,6 @@
 ﻿using Ardalis.GuardClauses;
 using Pibidex.Domain.Common;
+using System;
 
 namespace Pibidex.Infrastructure.UnitConversion
 {
@@ -20,13 +21,9 @@ namespace Pibidex.Infrastructure.UnitConversion
         {
             From = Guard.Against.Null(from, nameof(from));
             To = Guard.Against.Null(to, nameof(to));
-            _factorProvider = factorProvider;
+            _factorProvider = Guard.Against.Null(factorProvider, nameof(factorProvider));
         }
 
-        public double Convert(double value)
-        {   
-            Guard.Against.Null(value, nameof(value));
-            return Factor * value;
-        }
+        public double Convert(double value) => Math.Round(Factor * value, 2);
     }
 }

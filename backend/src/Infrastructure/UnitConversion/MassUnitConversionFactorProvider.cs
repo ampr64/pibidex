@@ -1,10 +1,9 @@
-﻿using Pibidex.Domain.Constants;
-using Pibidex.Domain.MeasureUnits;
+﻿using Pibidex.Domain.MeasureUnits;
 
 namespace Pibidex.Infrastructure.UnitConversion
 {
     public class MassUnitConversionFactorProvider
-        : ConversionFactorProviderBase<MassUnit, LengthUnitsConversionConstants>
+        : ConversionFactorProviderBase<MassUnit, MassUnitsConversionConstants>
     {
     }
 }

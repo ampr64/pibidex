@@ -4,7 +4,8 @@ using System;
 
 namespace Pibidex.Domain.Common
 {
-    public abstract class AuditableEntity : Entity
+    public abstract class AuditableEntity<TId> : Entity<TId>
+        where TId : Id<TId>
     {
         public DateTime CreatedOn { get; protected set; }
 
@@ -23,7 +24,7 @@ namespace Pibidex.Domain.Common
 
         public void SetCreationProperties(DateTime createdOn, string? createdBy)
         {
-            new AuditableEntityMustBeTransientToSetCreationPropertiesRule(this).Enforce();
+            new AuditableEntityMustBeTransientToSetCreationPropertiesRule<TId>(this).Enforce();
 
             CreatedOn = createdOn;
             CreatedBy = createdBy;

@@ -3,9 +3,9 @@ using Pibidex.Domain.MeasureUnits;
 
 namespace Pibidex.Infrastructure.UnitConversion
 {
-    public class LengthConverter : UnitConverterBase<LengthUnit>
+    public class LengthUnitConverter : UnitConverterBase<LengthUnit>
     {
-        public LengthConverter(IConversionFactorProvider<LengthUnit> factorProvider,
+        public LengthUnitConverter(IConversionFactorProvider<LengthUnit> factorProvider,
             LengthUnit from, LengthUnit to)
             : base(factorProvider, from, to)
         {
