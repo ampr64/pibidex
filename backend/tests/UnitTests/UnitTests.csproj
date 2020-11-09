@@ -6,6 +6,8 @@
     <IsPackable>false</IsPackable>
 
     <RootNamespace>Pibidex.UnitTests</RootNamespace>
+
+    <LangVersion>preview</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
