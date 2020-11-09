@@ -30,10 +30,10 @@ namespace Pibidex.Domain.Common
             CreatedBy = createdBy;
         }
 
-        public void SetUpdateProperties(DateTime lastModifiedOn, string lastModifiedBy)
+        public void SetUpdateProperties(DateTime? lastModifiedOn, string? lastModifiedBy)
         {
-            LastModifiedOn = Guard.Against.Default(lastModifiedOn, nameof(lastModifiedOn));
-            LastModifiedBy = Guard.Against.NullOrEmpty(lastModifiedBy, nameof(lastModifiedBy));
+            LastModifiedOn = lastModifiedOn;
+            LastModifiedBy = lastModifiedBy;
         }
     }
 }

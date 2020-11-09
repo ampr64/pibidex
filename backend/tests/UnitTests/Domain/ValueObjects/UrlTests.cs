@@ -30,6 +30,18 @@ namespace Pibidex.UnitTests.Domain.ValueObjects
             Assert.Throws<UrlInvalidSchemeException>(() => Url.Of(urlString));
         }
 
+        [Fact]
+        public void AddsTrailingSlashOnCreation()
+        {
+            var input = "https://www.google.com";
+
+            var expected = input + '/';
+
+            var url = Url.Of(input);
+
+            Assert.Equal(expected, (string)url);
+        }
+
         [Theory]
         [InlineData(@"http://www.test.com/")]
         [InlineData(@"https://www.test.com/")]
@@ -37,29 +49,33 @@ namespace Pibidex.UnitTests.Domain.ValueObjects
         {
             var url = Url.Of(urlString);
 
-            Assert.Equal(url, urlString);
+            Assert.Equal(url.Value, urlString);
         }
 
         [Fact]
-        public void ImplicitlyConvertsToStringCorrectly()
+        public void ExplicitlyConvertsToStringCorrectly()
         {
-            var initialUrlString = "https://www.google.com/";
+            var initialUrlString = "https://www.google.com";
+
+            var expected = initialUrlString + '/';
 
             var url = Url.Of(initialUrlString);
 
-            string convertedUrlString = url;
+            var convertedUrlString = (string)url;
 
-            Assert.Equal(initialUrlString, convertedUrlString);
+            Assert.Equal(expected, convertedUrlString);
         }
 
         [Fact]
         public void ExplicitlyConvertsFromStringCorrectly()
         {
-            var urlString = "https://www.google.com/";
+            var urlStringToConvert = "https://www.google.com";
 
-            var url = (Url)urlString;
+            var expected = urlStringToConvert + '/';
 
-            Assert.Equal(urlString, url);
+            var convertedUrl = (Url)urlStringToConvert;
+
+            Assert.Equal(expected, convertedUrl.Value);
         }
     }
 }

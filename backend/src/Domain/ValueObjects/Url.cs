@@ -1,5 +1,7 @@
 ﻿using Pibidex.Domain.Common;
+using Pibidex.Domain.Exceptions;
 using Pibidex.Domain.Rules;
+using System;
 using System.Collections.Generic;
 
 namespace Pibidex.Domain.ValueObjects
@@ -10,11 +12,21 @@ namespace Pibidex.Domain.ValueObjects
 
         private Url(string value) => Value = value;
 
+        private Url(Uri url) => Value = url.ToString();
+
         public static Url Of(string urlString)
         {
-            new UrlMustBeValidWithHttpOrHttpsSchemeRule(urlString).Enforce();
+            try
+            {
+                var url = new Uri(urlString);
+                new UrlMustHaveHttpOrHttpsSchemeRule(url).Enforce();
 
-            return new Url(urlString);
+                return new Url(url);
+            }
+            catch (Exception ex) when (ex is ArgumentNullException or UriFormatException)
+            {
+                throw new UrlInvalidException(urlString, ex);
+            }
         }
 
         protected override IEnumerable<object> GetEqualityComponents()
@@ -24,7 +36,7 @@ namespace Pibidex.Domain.ValueObjects
 
         public override string ToString() => Value;
 
-        public static implicit operator string(Url url) => url.Value;
+        public static explicit operator string(Url url) => url.Value;
 
         public static explicit operator Url(string urlString) => Of(urlString);
     }
