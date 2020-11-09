@@ -9,4 +9,12 @@
     <PackageReference Include="Ardalis.GuardClauses" Version="3.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Configuration\Behaviors\" />
+    <Folder Include="Configuration\Commands\" />
+    <Folder Include="Configuration\Exceptions\" />
+    <Folder Include="Configuration\Mappings\" />
+    <Folder Include="Configuration\Queries\" />
+  </ItemGroup>
+
 </Project>
