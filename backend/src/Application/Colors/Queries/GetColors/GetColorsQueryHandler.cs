@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Pibidex.Application.Colors.Queries.GetColors
 {
-    public class GetColorsQueryHandler : IQueryHandler<GetColorsQuery, ColorsVm>
+    public class GetColorsQueryHandler : IQueryHandler<GetColorsQuery, GetColorsVm>
     {
         private readonly IApplicationDbContext _context;
         private readonly IMapper _mapper;
@@ -22,9 +22,9 @@ namespace Pibidex.Application.Colors.Queries.GetColors
             _mapper = mapper;
         }
 
-        public async Task<ColorsVm> Handle(GetColorsQuery query, CancellationToken cancellationToken)
+        public async Task<GetColorsVm> Handle(GetColorsQuery query, CancellationToken cancellationToken)
         {
-            var result = new ColorsVm
+            var result = new GetColorsVm
             {
                 Colors = await _context.Colors
                     .ProjectTo<ColorDto>(_mapper.ConfigurationProvider)
@@ -35,13 +35,14 @@ namespace Pibidex.Application.Colors.Queries.GetColors
             if (!result.Colors.Any())
             {
                 result.Colors = GetPrefixedColors()
-                    .Select(c => new ColorDto { Id = c.Id, Name = c.Name })
+                    .OrderBy(c => c.Id)
+                    .Select(c => _mapper.Map<ColorDto>(c))
                     .ToList();
             }
 
             return result;
         }
 
-        private List<Color> GetPrefixedColors() => Color.GetAll().ToList();
+        private IEnumerable<Color> GetPrefixedColors() => Color.GetAll();
     }
 }

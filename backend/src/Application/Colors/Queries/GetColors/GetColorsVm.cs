@@ -2,7 +2,7 @@
 
 namespace Pibidex.Application.Colors.Queries.GetColors
 {
-    public class ColorsVm
+    public class GetColorsVm
     {
         public IList<ColorDto>? Colors { get; set; }
     }
