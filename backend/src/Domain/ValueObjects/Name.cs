@@ -1,5 +1,5 @@
-﻿using Pibidex.Domain.Common;
-using Pibidex.Domain.Rules;
+﻿using Ardalis.GuardClauses;
+using Pibidex.Domain.Common;
 using System.Collections.Generic;
 
 namespace Pibidex.Domain.ValueObjects
@@ -12,7 +12,7 @@ namespace Pibidex.Domain.ValueObjects
 
         public static Name Of(string value)
         {
-            new NameCannotBeNullOrWhiteSpaceRule(value).Enforce();
+            Guard.Against.NullOrEmpty(value, nameof(value));
 
             return new Name(value);
         }
