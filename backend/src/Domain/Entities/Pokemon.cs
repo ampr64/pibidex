@@ -60,17 +60,6 @@ namespace Pibidex.Domain.Entities
             PrimaryTypeId = Guard.Against.Null(primaryTypeId, nameof(primaryTypeId));
             SecondaryTypeId = secondaryTypeId;
         }
-
-        public void ChangePrimaryType(PokemonTypeId primaryTypeId) =>
-            PrimaryTypeId = Guard.Against.Null(primaryTypeId, nameof(primaryTypeId));
-
-        public void AddSecondaryType(PokemonTypeId secondaryTypeId)
-        {
-            new PokemonMustNotHaveSecondaryTypeToAddSecondaryTypeRule(SecondaryTypeId).Enforce();
-            SecondaryTypeId = secondaryTypeId;
-        }
-
-        public void RemoveSecondaryType() => SecondaryTypeId = null;
     }
 
     public class PokemonId : Id<PokemonId>

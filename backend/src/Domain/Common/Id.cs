@@ -1,4 +1,4 @@
-﻿using Pibidex.Domain.Rules;
+﻿using Ardalis.GuardClauses;
 using System;
 
 namespace Pibidex.Domain.Common
@@ -10,7 +10,7 @@ namespace Pibidex.Domain.Common
 
         public Id(int value)
         {
-            new IdMustBeAPositiveIntegerNumberRule(value).Enforce();
+            Guard.Against.NegativeOrZero(value, nameof(value));
 
             Value = value;
         }
