@@ -1,6 +1,5 @@
 ﻿using Ardalis.GuardClauses;
 using Pibidex.Domain.Common;
-using Pibidex.Domain.Rules;
 using Pibidex.Domain.ValueObjects;
 
 namespace Pibidex.Domain.Entities
