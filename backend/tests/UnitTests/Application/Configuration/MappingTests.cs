@@ -1,13 +1,8 @@
 ﻿using AutoMapper;
-using AutoMapper.Configuration;
 using Pibidex.Application.Colors.Queries.GetColors;
 using Pibidex.Application.Configuration.Mappings;
+using Pibidex.Domain.Common;
 using Pibidex.Domain.Enumeration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Pibidex.UnitTests.Application.Configuration
@@ -22,6 +17,8 @@ namespace Pibidex.UnitTests.Application.Configuration
             _configuration = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile<ApplicationProfile>();
+                cfg.CreateMap<IId, int>().ConvertUsing<IdToIntConverter>();
+                cfg.CreateMap<int, IId>().ConvertUsing<IntToIdConverter>();
             });
 
             _mapper = _configuration.CreateMapper();

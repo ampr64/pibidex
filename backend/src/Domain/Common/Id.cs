@@ -3,22 +3,23 @@ using System;
 
 namespace Pibidex.Domain.Common
 {
-    public abstract class Id<TId> : IComparable<Id<TId>>, IEquatable<Id<TId>>, IEquatable<TId>, IComparable<TId>
-        where TId : Id<TId>
+    public interface IId
+    {
+        int Value { get; }
+    }
+
+    public abstract class Id<T> : IId, IComparable<Id<T>>, IEquatable<Id<T>>, IEquatable<T>, IComparable<T>
+        where T : Id<T>
     {
         public int Value { get; }
 
-        public Id(int value)
-        {
-            Guard.Against.NegativeOrZero(value, nameof(value));
+        public Id(int value) =>
+            Value = Guard.Against.NegativeOrZero(value, nameof(value));
 
-            Value = value;
-        }
-
-        public int CompareTo(Id<TId>? other) =>
+        public int CompareTo(Id<T>? other) =>
             other is null ? 1 : Value.CompareTo(other.Value);
 
-        public bool Equals(Id<TId>? other) =>
+        public bool Equals(Id<T>? other) =>
             other is not null && other.Value == Value;
 
         public override bool Equals(object? obj)
@@ -26,20 +27,20 @@ namespace Pibidex.Domain.Common
             if (obj is null || obj.GetType() != GetType())
                 return false;
 
-            return Value == ((Id<TId>)obj).Value;
+            return Value == ((Id<T>)obj).Value;
         }
 
         public override int GetHashCode() => Value.GetHashCode();
 
         public override string ToString() => Value.ToString();
 
-        public bool Equals(TId? other) =>
+        public bool Equals(T? other) =>
             other is not null && Value == other.Value;
 
-        public int CompareTo(TId? other) =>
+        public int CompareTo(T? other) =>
             other is null ? 1 : Value.CompareTo(other.Value);
 
-        public static bool operator ==(Id<TId>? left, Id<TId>? right)
+        public static bool operator ==(Id<T>? left, Id<T>? right)
         {
             if (left is null)
                 return right is null;
@@ -47,11 +48,11 @@ namespace Pibidex.Domain.Common
             return left.Equals(right);
         }
 
-        public static bool operator !=(Id<TId>? left, Id<TId>? right) => !(left == right);
+        public static bool operator !=(Id<T>? left, Id<T>? right) => !(left == right);
 
-        public static explicit operator int(Id<TId> id) => id.Value;
+        public static explicit operator int(Id<T> id) => id.Value;
 
-        public static explicit operator Id<TId>(int value) =>
-            (Activator.CreateInstance(typeof(Id<TId>), value) as Id<TId>)!;
+        public static explicit operator Id<T>(int value) =>
+            (Activator.CreateInstance(typeof(Id<T>), value) as Id<T>)!;
     }
 }

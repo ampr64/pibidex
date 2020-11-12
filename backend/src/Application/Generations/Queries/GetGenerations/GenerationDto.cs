@@ -5,7 +5,7 @@ namespace Pibidex.Application.Generations.Queries.GetGenerations
 {
     public class GenerationDto : IDto<Generation>
     {
-        public int GenerationId { get; set; }
+        public int Id { get; set; }
 
         public string Name { get; set; } = null!;
 

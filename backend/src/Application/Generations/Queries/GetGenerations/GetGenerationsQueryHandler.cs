@@ -26,7 +26,7 @@ namespace Pibidex.Application.Generations.Queries.GetGenerations
             {
                 Generations = await _context.Generations
                     .ProjectTo<GenerationDto>(_mapper.ConfigurationProvider)
-                    .OrderBy(g => g.GenerationId)
+                    .OrderBy(g => g.Id)
                     .ToListAsync()
             };
         }
