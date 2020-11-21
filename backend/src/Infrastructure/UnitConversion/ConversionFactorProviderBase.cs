@@ -2,7 +2,7 @@
 using Pibidex.Domain.Extensions;
 using Pibidex.Domain.MeasureUnits;
 using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Linq;
 
 namespace Pibidex.Infrastructure.UnitConversion
@@ -11,37 +11,35 @@ namespace Pibidex.Infrastructure.UnitConversion
         where TUnit : MeasureUnit
         where TConstants : IConstants
     {
-        private static readonly List<(TUnit From, TUnit To, double Factor)> _conversionChart =
-            GetUnitsConversions();
+        private static readonly ConcurrentDictionary<(TUnit from, TUnit to), double> _conversionChart = new();
 
-        public double GetConversionFactor(TUnit from, TUnit to) => from == to
-            ? 1
-            : _conversionChart.SingleOrDefault(x => x.From == from && x.To == to)
-                              .Factor;
+        protected ConversionFactorProviderBase() => AddConvertions();
 
-        protected static string FieldName(TUnit from, TUnit to) =>
-            $"{from.Name}To{to.Name}";
-
-        protected static double FieldValue(string name) =>
-            typeof(TConstants).GetFieldValue<double>(name)!;
-
-        protected static List<(TUnit from, TUnit to, double factor)> GetUnitsConversions()
+        public double GetConversionFactor(TUnit from, TUnit to)
         {
-            var measureUnits = MeasureUnit.GetAll().OfType<TUnit>().ToList();
-            var result = new List<(TUnit from, TUnit to, double factor)>();
+            if (from == to)
+                return 1;
 
-            foreach (var unit in measureUnits)
-            {
-                var unitConversions = measureUnits.Where(x => unit != x)
-                    .Select(target =>
-                        (from: unit,
-                        to: target,
-                        factor: FieldValue(FieldName(unit, target))));
-
-                result.AddRange(unitConversions);
-            }
+            if (!_conversionChart.TryGetValue((from, to), out var result))
+                throw new InvalidOperationException($"No factor found for conversion from {from.Name} to {to.Name}");
 
             return result;
+        }
+
+        protected static void AddConvertions()
+        {
+            var measureUnits = MeasureUnit.GetAll().OfType<TUnit>().ToList();
+
+            foreach (var source in measureUnits)
+            {
+                foreach (var target in measureUnits.Where(mu => mu != source))
+                {
+                    var fieldName = $"{source.Name}To{target.Name}";
+                    var factorValue = typeof(TConstants).GetFieldValue<double>(fieldName);
+
+                    _conversionChart.TryAdd((source, target), factorValue);
+                }
+            }
         }
     }
 }
