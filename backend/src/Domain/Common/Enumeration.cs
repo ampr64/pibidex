@@ -29,10 +29,10 @@ namespace Pibidex.Domain.Common
         {
             if (string.IsNullOrEmpty(name))
                 new ArgumentException(nameof(name));
-            if (id == null)
+            if (id is null)
                 new ArgumentNullException(nameof(id));
 
-            Id = id;
+            Id = id!;
             Name = name;
         }
 
@@ -75,7 +75,7 @@ namespace Pibidex.Domain.Common
                 result = FromName(name, ignoreCase);
                 return true;
             }
-            catch(InvalidOperationException)
+            catch (InvalidOperationException)
             {
                 result = default;
                 return false;
@@ -146,7 +146,7 @@ namespace Pibidex.Domain.Common
         {
             if (left is null ^ right is null)
                 return false;
-            
+
             return (bool?)(left?.CompareTo(right) >= 0) ?? true;
         }
 

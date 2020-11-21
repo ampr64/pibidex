@@ -27,7 +27,7 @@ namespace Pibidex.Application.Groups.Commands.CreateGroup
         }
 
         private async Task<bool> BeUniqueIdAndName(int id, string name, CancellationToken cancellationToken) =>
-            !await _context.Groups
+            !await _context.SpeciesGroups
                 .AnyAsync(g => (int)g.Id == id || g.Name.ToLower() == name.ToLower());
     }
 }

@@ -14,11 +14,13 @@ namespace Pibidex.Application.Groups.Commands.CreateGroup
 
         public async Task<int> Handle(CreateGroupCommand request, CancellationToken cancellationToken)
         {
-            var group = new Group((GroupId)request.Id, request.Name!);
+            var group = new PokemonSpeciesGroup((GroupId)request.Id, request.Name!);
 
-            _context.Groups.Add(group);
+            await _context.SpeciesGroups.AddAsync(group, cancellationToken)
+                .ConfigureAwait(false);
 
-            await _context.CommitChangesAsync(cancellationToken);
+            await _context.CommitChangesAsync(cancellationToken)
+                .ConfigureAwait(false);
 
             return (int)group.Id;
         }

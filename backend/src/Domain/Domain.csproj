@@ -14,12 +14,7 @@
   <ItemGroup>
     <Folder Include="Common\" />
     <Folder Include="Constants\" />
-    <Folder Include="Entities\" />
-    <Folder Include="Enumerations\" />
-    <Folder Include="Enums\" />
-    <Folder Include="Exceptions\" />
     <Folder Include="MeasureUnits\" />
-    <Folder Include="Rules\" />
     <Folder Include="ValueObjects\" />
   </ItemGroup>
 

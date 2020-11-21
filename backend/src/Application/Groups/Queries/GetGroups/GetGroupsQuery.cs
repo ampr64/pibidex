@@ -3,6 +3,6 @@
 namespace Pibidex.Application.Groups.Queries.GetGroups
 {
     public class GetGroupsQuery : IQuery<GetGroupsVm>
-    {        
+    {
     }
 }

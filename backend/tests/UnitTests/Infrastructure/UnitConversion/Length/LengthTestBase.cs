@@ -1,5 +1,4 @@
 ﻿using Pibidex.Infrastructure.UnitConversion;
-using Xunit;
 
 namespace Pibidex.UnitTests.Infrastructure.UnitConversion.Length
 {

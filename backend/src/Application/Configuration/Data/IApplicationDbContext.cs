@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Pibidex.Application.Configuration.Data
 {
+
     public interface IApplicationDbContext
     {
         DbSet<Ability> Abilities { get; set; }
@@ -17,13 +18,13 @@ namespace Pibidex.Application.Configuration.Data
 
         DbSet<Generation> Generations { get; set; }
 
-        DbSet<Group> Groups { get; set; }
+        DbSet<PokemonSpeciesGroup> SpeciesGroups { get; set; }
 
-        DbSet<Pokemon> Pokemons { get; set; }
+        DbSet<PokemonForm> PokemonForms { get; set; }
 
-        DbSet<PokemonSpecies> Species { get; set; }
+        DbSet<PokemonSpecies> PokemonSpecies { get; set; }
 
-        DbSet<PokemonType> Types { get; set; }
+        DbSet<PokemonType> PokemonTypes { get; set; }
 
         DbSet<Region> Regions { get; set; }
 

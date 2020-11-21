@@ -15,7 +15,7 @@ namespace Pibidex.Application.Configuration.Exceptions
             {
                 var propertyName = errorGroup.Key;
                 var propertyErrors = errorGroup.ToArray();
-                
+
                 Errors.Add(errorGroup.Key, propertyErrors);
             }
         }

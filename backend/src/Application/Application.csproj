@@ -17,17 +17,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Abilities\" />
-    <Folder Include="Categories\" />
+    <Folder Include="Abilities\Commands\" />
+    <Folder Include="Abilities\Queries\" />
+    <Folder Include="Categories\Commands\" />
+    <Folder Include="Categories\Queries\" />
     <Folder Include="Configuration\Behaviors\" />
     <Folder Include="Configuration\Commands\" />
     <Folder Include="Configuration\Data\" />
     <Folder Include="Configuration\Exceptions\" />
-    <Folder Include="Configuration\Mappings\" />
     <Folder Include="Configuration\Queries\" />
-    <Folder Include="PokemonSpecies\" />
-    <Folder Include="Pokemons\" />
-    <Folder Include="PokemonTypes\" />
+    <Folder Include="Species\Queries\" />
+    <Folder Include="PokemonForms\" />
+    <Folder Include="PokemonTypes\Commands\" />
+    <Folder Include="PokemonTypes\Queries\" />
     <Folder Include="Regions\" />
   </ItemGroup>
 

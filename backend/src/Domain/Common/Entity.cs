@@ -1,20 +1,22 @@
-﻿using Pibidex.Domain.ValueObjects;
+﻿using Ardalis.GuardClauses;
 using System;
 
 namespace Pibidex.Domain.Common
 {
     public abstract class Entity<TId> : IEquatable<Entity<TId>>
-        where TId : Id<TId>
+        where TId : Id<TId>, IEquatable<TId>
     {
-        public TId Id { get; protected set; } = null!;
+        public TId Id { get; private set; } = null!;
 
-        public Name Name { get; protected set; } = null!;
+        public string Name { get; private set; } = null!;
 
         protected Entity() { }
 
-        protected Entity(string name) => Name = (Name)name;
+        protected Entity(string name) => SetName(name);
 
-        protected Entity(Name name) => Name = name;
+        protected Entity(TId id, string name) : this(name) => Id = Guard.Against.Null(id, nameof(id));
+
+        protected void SetName(string name) => Name = Guard.Against.NullOrWhiteSpace(name, nameof(name));
 
         public static bool operator ==(Entity<TId>? left, Entity<TId>? right)
         {
@@ -31,7 +33,7 @@ namespace Pibidex.Domain.Common
 
         public override bool Equals(object? obj)
         {
-            if (obj is null || !(obj is Entity<TId> other))
+            if (obj is null || obj is not Entity<TId> other)
                 return false;
 
             if (ReferenceEquals(this, other))

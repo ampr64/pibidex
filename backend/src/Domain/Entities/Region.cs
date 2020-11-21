@@ -1,5 +1,4 @@
 ﻿using Pibidex.Domain.Common;
-using Pibidex.Domain.ValueObjects;
 
 namespace Pibidex.Domain.Entities
 {
@@ -13,7 +12,7 @@ namespace Pibidex.Domain.Entities
 
         private Region() { }
 
-        public Region(Name name, GenerationId generationId, string description) : base(name) =>
+        public Region(string name, GenerationId generationId, string description) : base(name) =>
             (GenerationId, Description) = (generationId, description);
 
         public void SetDescription(string? description) =>

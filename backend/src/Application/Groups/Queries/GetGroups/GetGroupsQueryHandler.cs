@@ -26,7 +26,7 @@ namespace Pibidex.Application.Groups.Queries.GetGroups
         {
             var result = new GetGroupsVm
             {
-                Groups = await _context.Groups
+                Groups = await _context.SpeciesGroups
                     .ProjectTo<GroupDto>(_mapper.ConfigurationProvider)
                     .OrderBy(g => g.Id)
                     .ToListAsync(cancellationToken)
@@ -43,6 +43,6 @@ namespace Pibidex.Application.Groups.Queries.GetGroups
             return result;
         }
 
-        public IEnumerable<Group> GetPrefixedGroups() => Group.GetAll();
+        public IEnumerable<PokemonSpeciesGroup> GetPrefixedGroups() => PokemonSpeciesGroup.GetAll();
     }
 }

@@ -1,5 +1,4 @@
-﻿using Ardalis.GuardClauses;
-using Pibidex.Domain.Rules;
+﻿using Pibidex.Domain.Rules;
 using System;
 
 namespace Pibidex.Domain.Common

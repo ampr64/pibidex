@@ -1,5 +1,4 @@
 ﻿using Pibidex.Domain.Common;
-using Pibidex.Domain.ValueObjects;
 
 namespace Pibidex.Domain.Entities
 {
@@ -9,7 +8,7 @@ namespace Pibidex.Domain.Entities
 
         private Ability() { }
 
-        public Ability(Name name, string? description) : base(name) =>
+        public Ability(string name, string? description) : base(name) =>
             Description = description;
 
         public void SetDescription(string? description) => Description = description;

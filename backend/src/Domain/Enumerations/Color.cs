@@ -15,7 +15,8 @@ namespace Pibidex.Domain.Enumeration
         public static readonly Color White = new Color(9, nameof(White));
         public static readonly Color Pink = new Color(10, nameof(Pink));
 
-        private Color(int id, string name) : base(id, name)
+        private Color(int id, string name)
+            : base(id, name)
         {
         }
     }
