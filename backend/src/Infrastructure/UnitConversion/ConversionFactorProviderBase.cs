@@ -11,22 +11,22 @@ namespace Pibidex.Infrastructure.UnitConversion
         where TUnit : MeasureUnit
         where TConstants : IConstants
     {
-        private static readonly ConcurrentDictionary<(TUnit from, TUnit to), double> _conversionChart = new();
+        private static readonly ConcurrentDictionary<(TUnit from, TUnit to), double> _conversionsLookup = new();
 
-        protected ConversionFactorProviderBase() => AddConvertions();
+        protected ConversionFactorProviderBase() => LoadConversionsLookup();
 
         public double GetConversionFactor(TUnit from, TUnit to)
         {
             if (from == to)
                 return 1;
 
-            if (!_conversionChart.TryGetValue((from, to), out var result))
+            if (!_conversionsLookup.TryGetValue((from, to), out var result))
                 throw new InvalidOperationException($"No factor found for conversion from {from.Name} to {to.Name}");
 
             return result;
         }
 
-        protected static void AddConvertions()
+        private static void LoadConversionsLookup()
         {
             var measureUnits = MeasureUnit.GetAll().OfType<TUnit>().ToList();
 
@@ -37,7 +37,7 @@ namespace Pibidex.Infrastructure.UnitConversion
                     var fieldName = $"{source.Name}To{target.Name}";
                     var factorValue = typeof(TConstants).GetFieldValue<double>(fieldName);
 
-                    _conversionChart.TryAdd((source, target), factorValue);
+                    _conversionsLookup.TryAdd((source, target), factorValue);
                 }
             }
         }

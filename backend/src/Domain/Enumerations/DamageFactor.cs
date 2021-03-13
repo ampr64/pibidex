@@ -3,18 +3,16 @@ using static Pibidex.Domain.Constants.DamageFactorConstants;
 
 namespace Pibidex.Domain.Enumeration
 {
-    public class DamageFactor : Enumeration<DamageFactor, double>
+    public class DamageFactor : Enumeration<DamageFactor>
     {
-        public static DamageFactor One = new DamageFactor(_1, nameof(One));
-        public static DamageFactor ThreeQuarters = new DamageFactor(_075, nameof(ThreeQuarters));
-        public static DamageFactor Half = new DamageFactor(_05, nameof(Half));
-        public static DamageFactor Quarter = new DamageFactor(_025, nameof(Quarter));
-        public static DamageFactor Zero = new DamageFactor(_0, nameof(Zero));
-        public static DamageFactor OneAndQuarter = new DamageFactor(_125, nameof(OneAndQuarter));
-        public static DamageFactor OneAndHalf = new DamageFactor(_15, nameof(OneAndHalf));
-        public static DamageFactor OneAndThreeQuarters = new DamageFactor(_175, nameof(OneAndThreeQuarters));
-        public static DamageFactor Two = new DamageFactor(_2, nameof(Two));
+        public static DamageFactor Ineffective = new DamageFactor(1, nameof(Ineffective), INEFFECTIVE);
+        public static DamageFactor NotVeryEffective = new DamageFactor(2, "Not very effective", NOT_VERY_EFFECTIVE);
+        public static DamageFactor Regular = new DamageFactor(3, nameof(Regular), REGULAR);
+        public static DamageFactor SuperEffective = new DamageFactor(4, "Super effective", SUPER_EFFECTIVE);
 
-        private DamageFactor(double id, string name) : base(id, name) { }
+        public double FactorValue { get; set; }
+
+        private DamageFactor(int id, string name, double factorValue) : base(id, name) =>
+            FactorValue = factorValue;
     }
 }

@@ -1,15 +1,10 @@
 ﻿namespace Pibidex.Domain.Constants
 {
-    public struct DamageFactorConstants
+    internal static class DamageFactorConstants
     {
-        public static readonly double _0 = 0;
-        public static readonly double _025 = 0.25;
-        public static readonly double _05 = 0.5;
-        public static readonly double _075 = 0.75;
-        public static readonly double _1 = 1;
-        public static readonly double _125 = 1.25;
-        public static readonly double _15 = 1.5;
-        public static readonly double _175 = 1.75;
-        public static readonly double _2 = 2;
+        public const double INEFFECTIVE = 0;
+        public const double NOT_VERY_EFFECTIVE = 0.5;
+        public const double REGULAR = 1;
+        public const double SUPER_EFFECTIVE = 2;
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Pibidex.Infrastructure.UnitConversion
 {
-    public struct LengthUnitsConversionConstants : IConstants
+    public class LengthUnitsConversionConstants : IConstants
     {
         public const double MeterToCentimeter = 100;
         public const double MeterToFoot = 3.28084;
@@ -18,7 +18,7 @@ namespace Pibidex.Infrastructure.UnitConversion
         public const double InchToFoot = 0.0833333;
     }
 
-    public struct MassUnitsConversionConstants : IConstants
+    public class MassUnitsConversionConstants : IConstants
     {
         public const double KilogramToGram = 1000;
         public const double KilogramToPound = 2.20462;
