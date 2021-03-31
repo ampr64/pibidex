@@ -1,9 +1,9 @@
 ﻿using Pibidex.Domain.MeasureUnits;
-using Pibidex.Infrastructure.UnitConversion;
+using Pibidex.Infrastructure.UnitConversions;
 using Xunit;
 
 
-namespace Pibidex.UnitTests.Infrastructure.UnitConversion
+namespace Pibidex.UnitTests.Infrastructure.UnitConversions
 {
     public class UnitConversionFactorProviderTests
     {

@@ -2,7 +2,7 @@
 using static Pibidex.Domain.MeasureUnits.LengthUnit;
 using static Pibidex.Domain.MeasureUnits.MassUnit;
 
-namespace Pibidex.UnitTests.Infrastructure.UnitConversion
+namespace Pibidex.UnitTests.Infrastructure.UnitConversions
 {
     public class FactorProvidersTestData
     {

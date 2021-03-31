@@ -1,6 +1,6 @@
-﻿using Pibidex.Infrastructure.UnitConversion;
+﻿using Pibidex.Infrastructure.UnitConversions;
 
-namespace Pibidex.UnitTests.Infrastructure.UnitConversion.Length
+namespace Pibidex.UnitTests.Infrastructure.UnitConversions.Length
 {
     public class LengthTestBase
     {

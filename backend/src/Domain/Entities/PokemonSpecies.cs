@@ -27,19 +27,19 @@ namespace Pibidex.Domain.Entities
         public string Description { get; private set; } = null!;
 
         private readonly List<PokemonForm> _forms = new();
-
         public IReadOnlyCollection<PokemonForm> Forms => _forms.AsReadOnly();
 
         private PokemonSpecies() { }
 
-        public PokemonSpecies(PokemonSpeciesId id,
-                       string name,
-                       CategoryId categoryId,
-                       int colorId,
-                       GroupId groupId,
-                       string description,
-                       EvolutionChainId? evolutionChainId = null,
-                       PokemonSpeciesId? parentSpeciesId = null)
+        public PokemonSpecies(
+            PokemonSpeciesId id,
+            string name,
+            CategoryId categoryId,
+            int colorId,
+            GroupId groupId,
+            string description,
+            EvolutionChainId? evolutionChainId = null,
+            PokemonSpeciesId? parentSpeciesId = null)
             : base(id, name)
         {
             CategoryId = Guard.Against.Null(categoryId, nameof(categoryId));

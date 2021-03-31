@@ -24,8 +24,9 @@
     <Folder Include="Configuration\Behaviors\" />
     <Folder Include="Configuration\Commands\" />
     <Folder Include="Configuration\Data\" />
-    <Folder Include="Configuration\Exceptions\" />
     <Folder Include="Configuration\Queries\" />
+    <Folder Include="Regions\" />
+    <Folder Include="PokemonForms\" />
     <Folder Include="Species\Queries\" />
     <Folder Include="PokemonForms\" />
     <Folder Include="PokemonTypes\Commands\" />

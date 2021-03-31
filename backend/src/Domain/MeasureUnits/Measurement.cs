@@ -1,20 +1,20 @@
 ﻿using Ardalis.GuardClauses;
-using Pibidex.Domain.MeasureUnits;
+using Pibidex.Domain.Common;
 using System.Collections.Generic;
 
-namespace Pibidex.Domain.Common
+namespace Pibidex.Domain.MeasureUnits
 {
     public abstract class Measurement<TUnit> : ValueObject
-        where TUnit : MeasureUnit
+        where TUnit : IUnitOfMeasure
     {
-        public TUnit Unit { get; protected set; }
-
         public double Value { get; protected set; }
+
+        public TUnit Unit { get; protected set; }
 
         protected Measurement(TUnit unit, double value)
         {
             Unit = Guard.Against.Null(unit, nameof(unit));
-            Value = Guard.Against.NegativeOrZero(value, nameof(value));
+            Value = Guard.Against.Negative(value, nameof(value));
         }
 
         protected override IEnumerable<object> GetEqualityComponents()

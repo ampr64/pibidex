@@ -4,13 +4,13 @@ namespace Pibidex.Domain.Entities
 {
     public class PokemonType : Entity<PokemonTypeId>
     {
-        public int GenerationId { get; private set; }
+        public GenerationId GenerationId { get; private set; } = null!;
 
         public Generation Generation { get; private set; } = null!;
 
         private PokemonType() { }
 
-        public PokemonType(int generationId, string name) : base(name) =>
+        public PokemonType(GenerationId generationId, string name) : base(name) =>
             GenerationId = generationId;
     }
 

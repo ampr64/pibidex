@@ -14,7 +14,7 @@ namespace Pibidex.Application.Groups.Commands.CreateGroup
 
         public async Task<int> Handle(CreateGroupCommand request, CancellationToken cancellationToken)
         {
-            var group = new PokemonSpeciesGroup((GroupId)request.Id, request.Name!);
+            var group = new SpeciesGroup((GroupId)request.Id, request.Name!);
 
             await _context.SpeciesGroups.AddAsync(group, cancellationToken)
                 .ConfigureAwait(false);

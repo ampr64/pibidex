@@ -34,16 +34,17 @@ namespace Pibidex.Domain.Entities
 
         private PokemonForm() { }
 
-        private PokemonForm(string name,
-                             GenerationId generationId,
-                             PokemonSpeciesId speciesId,
-                             Height height,
-                             Weight weight,
-                             PokemonTypeId primaryTypeId,
-                             PokemonTypeId? secondaryTypeId = null,
-                             Url? imageUrl = null,
-                             string? description = null,
-                             bool isDefault = false) : base(name)
+        private PokemonForm(
+            string name,
+            GenerationId generationId,
+            PokemonSpeciesId speciesId,
+            Height height,
+            Weight weight,
+            PokemonTypeId primaryTypeId,
+            PokemonTypeId? secondaryTypeId = null,
+            Url? imageUrl = null,
+            string? description = null,
+            bool isDefault = false) : base(name)
         {
             GenerationId = Guard.Against.Null(generationId, nameof(generationId));
             SpeciesId = Guard.Against.Null(speciesId, nameof(speciesId));
@@ -55,26 +56,28 @@ namespace Pibidex.Domain.Entities
             SetTypes(primaryTypeId, secondaryTypeId);
         }
 
-        internal static PokemonForm CreateDefaultForm(string name,
-                                                      GenerationId generationId,
-                                                      PokemonSpeciesId speciesId,
-                                                      Height height,
-                                                      Weight weight,
-                                                      PokemonTypeId primaryTypeId,
-                                                      PokemonTypeId? secondaryTypeId = null,
-                                                      Url? imageUrl = null,
-                                                      string? description = null)
+        internal static PokemonForm CreateDefaultForm(
+            string name,
+            GenerationId generationId,
+            PokemonSpeciesId speciesId,
+            Height height,
+            Weight weight,
+            PokemonTypeId primaryTypeId,
+            PokemonTypeId? secondaryTypeId = null,
+            Url? imageUrl = null,
+            string? description = null)
         {
-            return new PokemonForm(name,
-                                   generationId,
-                                   speciesId,
-                                   height,
-                                   weight,
-                                   primaryTypeId,
-                                   secondaryTypeId,
-                                   imageUrl,
-                                   description,
-                                   true);
+            return new PokemonForm(
+                name,
+                generationId,
+                speciesId,
+                height,
+                weight,
+                primaryTypeId,
+                secondaryTypeId,
+                imageUrl,
+                description,
+                true);
         }
 
         public void SetDescription(string? description) => Description = description;

@@ -1,8 +1,8 @@
 ﻿using Pibidex.Domain.MeasureUnits;
-using Pibidex.Infrastructure.UnitConversion;
+using Pibidex.Infrastructure.UnitConversions;
 using Xunit;
 
-namespace Pibidex.UnitTests.Infrastructure.UnitConversion.Length
+namespace Pibidex.UnitTests.Infrastructure.UnitConversions.Length
 {
     public class LengthConversionTests : LengthTestBase
     {

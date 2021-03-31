@@ -3,7 +3,7 @@ using Pibidex.Enumerations;
 
 namespace Pibidex.Application.Groups.Queries.GetGroups
 {
-    public class GroupDto : IDto<PokemonSpeciesGroup>
+    public class GroupDto : IDto<SpeciesGroup>
     {
         public int Id { get; set; }
 

@@ -1,13 +1,16 @@
 ﻿namespace Pibidex.Domain.MeasureUnits
 {
-    public class LengthUnit : MeasureUnit
+    public sealed class LengthUnit : MeasureUnit, ILengthUnit
     {
-        public static readonly LengthUnit Centimeter = new LengthUnit(1, nameof(Centimeter), "Centimeters", "cm");
-        public static readonly LengthUnit Meter = new LengthUnit(2, nameof(Meter), "Meters", "m");
-        public static readonly LengthUnit Foot = new LengthUnit(3, nameof(Foot), "Feet", "ft");
-        public static readonly LengthUnit Inch = new LengthUnit(4, nameof(Inch), "Inches", "in");
+        public static LengthUnit Centimeter => new(nameof(Centimeter), "centimeters", "cm", 0.01, 100);
 
-        private LengthUnit(int id, string name, string abbreviation, string plural)
-            : base(id, name, abbreviation, plural) { }
+        public static LengthUnit Meter => new(nameof(Meter), "meters", "m", 1, 1);
+
+        public static LengthUnit Foot => new(nameof(Foot), "feet", "ft", 0.3048, 3.28084);
+
+        public static LengthUnit Inch => new(nameof(Inch), "inches", "in", 0.0254, 39.3701);
+
+        private LengthUnit(string name, string abbreviation, string plural, double toBaseUnit, double fromBaseUnit)
+            : base(name, abbreviation, plural, toBaseUnit, fromBaseUnit) { }
     }
 }

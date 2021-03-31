@@ -1,7 +1,7 @@
-﻿using Pibidex.Domain.Common;
+﻿using Pibidex.Application.Configuration.MeasureUnits;
 using Pibidex.Domain.MeasureUnits;
 
-namespace Pibidex.Infrastructure.UnitConversion
+namespace Pibidex.Infrastructure.UnitConversions
 {
     public class MassUnitConverter : UnitConverterBase<MassUnit>
     {

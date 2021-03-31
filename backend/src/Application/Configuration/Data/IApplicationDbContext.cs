@@ -18,7 +18,7 @@ namespace Pibidex.Application.Configuration.Data
 
         DbSet<Generation> Generations { get; set; }
 
-        DbSet<PokemonSpeciesGroup> SpeciesGroups { get; set; }
+        DbSet<SpeciesGroup> SpeciesGroups { get; set; }
 
         DbSet<PokemonForm> PokemonForms { get; set; }
 

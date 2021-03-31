@@ -1,14 +1,13 @@
 ﻿using Pibidex.Domain.Common;
-using static Pibidex.Domain.Constants.DamageFactorConstants;
 
 namespace Pibidex.Domain.Enumeration
 {
     public class DamageFactor : Enumeration<DamageFactor>
     {
-        public static DamageFactor Ineffective = new DamageFactor(1, nameof(Ineffective), INEFFECTIVE);
-        public static DamageFactor NotVeryEffective = new DamageFactor(2, "Not very effective", NOT_VERY_EFFECTIVE);
-        public static DamageFactor Regular = new DamageFactor(3, nameof(Regular), REGULAR);
-        public static DamageFactor SuperEffective = new DamageFactor(4, "Super effective", SUPER_EFFECTIVE);
+        public static DamageFactor Ineffective = new DamageFactor(1, nameof(Ineffective), 0);
+        public static DamageFactor NotVeryEffective = new DamageFactor(2, "Not very effective", 0.5);
+        public static DamageFactor Regular = new DamageFactor(3, nameof(Regular), 1);
+        public static DamageFactor SuperEffective = new DamageFactor(4, "Super effective", 2);
 
         public double FactorValue { get; set; }
 

@@ -43,6 +43,6 @@ namespace Pibidex.Application.Groups.Queries.GetGroups
             return result;
         }
 
-        public IEnumerable<PokemonSpeciesGroup> GetPrefixedGroups() => PokemonSpeciesGroup.GetAll();
+        public IEnumerable<SpeciesGroup> GetPrefixedGroups() => SpeciesGroup.GetAll();
     }
 }

@@ -1,5 +1,4 @@
-﻿using Pibidex.Domain.Common;
-using Pibidex.Domain.MeasureUnits;
+﻿using Pibidex.Domain.MeasureUnits;
 
 namespace Pibidex.Domain.ValueObjects
 {

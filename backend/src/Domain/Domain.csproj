@@ -13,8 +13,11 @@
 
   <ItemGroup>
     <Folder Include="Common\" />
-    <Folder Include="Constants\" />
-    <Folder Include="MeasureUnits\" />
+    <Folder Include="Enumerations\" />
+    <Folder Include="Exceptions\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Rules\" />
+    <Folder Include="Services\" />
     <Folder Include="ValueObjects\" />
   </ItemGroup>
 

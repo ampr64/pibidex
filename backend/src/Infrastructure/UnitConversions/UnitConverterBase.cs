@@ -1,12 +1,12 @@
 ﻿using Ardalis.GuardClauses;
-using Pibidex.Domain.Common;
+using Pibidex.Application.Configuration.MeasureUnits;
+using Pibidex.Domain.MeasureUnits;
 using System;
 
-namespace Pibidex.Infrastructure.UnitConversion
+namespace Pibidex.Infrastructure.UnitConversions
 {
-    public abstract class UnitConverterBase<TUnit> : IUnitConverter<TUnit, double>
-        where TUnit : IUnitOfMeasure
-
+    public abstract class UnitConverterBase<TUnit> : IUnitConverter<TUnit>
+        where TUnit : MeasureUnit
     {
         protected readonly IConversionFactorProvider<TUnit> _factorProvider;
 
