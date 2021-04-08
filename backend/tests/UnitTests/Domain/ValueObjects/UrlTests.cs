@@ -11,7 +11,7 @@ namespace Pibidex.UnitTests.Domain.ValueObjects
         [InlineData("")]
         public void CantBeCreatedWithNullOrEmptyString(string urlString)
         {
-            Assert.Throws<UrlInvalidException>(() => Url.Of(urlString));
+            Assert.Throws<UrlInvalidFormatException>(() => Url.Of(urlString));
         }
 
         [Fact]
@@ -19,7 +19,7 @@ namespace Pibidex.UnitTests.Domain.ValueObjects
         {
             var urlString = "www.test.com";
 
-            Assert.Throws<UrlInvalidException>(() => Url.Of(urlString));
+            Assert.Throws<UrlInvalidFormatException>(() => Url.Of(urlString));
         }
 
         [Theory]

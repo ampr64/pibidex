@@ -1,6 +1,6 @@
-﻿using Pibidex.Domain.Common;
+﻿using Ardalis.GuardClauses;
+using Pibidex.Domain.Common;
 using Pibidex.Domain.Exceptions;
-using Pibidex.Domain.Rules;
 using System;
 using System.Collections.Generic;
 
@@ -16,16 +16,19 @@ namespace Pibidex.Domain.ValueObjects
 
         public static Url Of(string urlString)
         {
+            Guard.Against.NullOrWhiteSpace(urlString, nameof(urlString));
             try
             {
                 var url = new Uri(urlString);
-                new UrlMustHaveHttpOrHttpsSchemeRule(url).Enforce();
+
+                if (url.Scheme != Uri.UriSchemeHttp && url.Scheme != Uri.UriSchemeHttps)
+                    throw new UrlInvalidSchemeException(url);
 
                 return new Url(url);
             }
             catch (Exception ex) when (ex is ArgumentNullException or UriFormatException)
             {
-                throw new UrlInvalidException(urlString, ex);
+                throw new UrlInvalidFormatException(urlString, ex);
             }
         }
 
