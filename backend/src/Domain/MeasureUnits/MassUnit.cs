@@ -1,16 +1,16 @@
 ﻿namespace Pibidex.Domain.MeasureUnits
 {
-    public class MassUnit : MeasureUnit, IMassUnit
+    public sealed class MassUnit : MeasureUnit
     {
-        public static MassUnit Gram => new(nameof(Gram), "g", "grams");
+        public static MassUnit Gram => new(1, nameof(Gram), "g", "Grams");
 
-        public static MassUnit Kilogram => new(nameof(Kilogram), "kg", "kilograms");
+        public static MassUnit Kilogram => new(2, nameof(Kilogram), "kg", "Kilograms");
 
-        public static MassUnit Pound => new(nameof(Pound), "lb", "pounds");
+        public static MassUnit Pound => new(3, nameof(Pound), "lb", "Pounds");
 
-        public static MassUnit Ounce => new(nameof(Ounce), "oz", "ounces");
+        public static MassUnit Ounce => new(4, nameof(Ounce), "oz", "Ounces");
 
-        private MassUnit(string name, string abbreviation, string plural)
-            : base(name, abbreviation, plural) { }
+        private MassUnit(int id, string name, string abbreviation, string plural)
+            : base(id, name, abbreviation, plural) { }
     }
 }
