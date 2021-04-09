@@ -4,13 +4,13 @@ using Pibidex.Domain.ValueObjects;
 
 namespace Pibidex.Domain.Entities
 {
-    public class PokemonForm : Entity<PokemonId>
+    public class PokemonForm : Entity<PokemonFormId>
     {
         public GenerationId GenerationId { get; private set; } = null!;
 
         public Generation Generation { get; private set; } = null!;
 
-        public PokemonSpeciesId SpeciesId { get; private set; } = null!;
+        public PokedexNumber SpeciesId { get; private set; } = null!;
 
         public PokemonSpecies Species { get; private set; } = null!;
 
@@ -37,7 +37,7 @@ namespace Pibidex.Domain.Entities
         private PokemonForm(
             string name,
             GenerationId generationId,
-            PokemonSpeciesId speciesId,
+            PokedexNumber speciesId,
             Height height,
             Weight weight,
             PokemonTypeId primaryTypeId,
@@ -52,14 +52,14 @@ namespace Pibidex.Domain.Entities
             Height = Guard.Against.Null(height, nameof(height));
             Weight = Guard.Against.Null(weight, nameof(weight));
             ImageUrl = imageUrl;
-            SetDescription(description);
-            SetTypes(primaryTypeId, secondaryTypeId);
+            Description = description;
+            UpdateTypes(primaryTypeId, secondaryTypeId);
         }
 
         internal static PokemonForm CreateDefaultForm(
             string name,
             GenerationId generationId,
-            PokemonSpeciesId speciesId,
+            PokedexNumber speciesId,
             Height height,
             Weight weight,
             PokemonTypeId primaryTypeId,
@@ -80,25 +80,24 @@ namespace Pibidex.Domain.Entities
                 true);
         }
 
-        public void SetDescription(string? description) => Description = description;
-
-        public void UpdateDetails(Height height, Weight weight, Url? imageUrl)
+        public void UpdateDetails(Height height, Weight weight, string? description, Url? imageUrl)
         {
             Height = Guard.Against.Null(height, nameof(height));
             Weight = Guard.Against.Null(weight, nameof(weight));
+            Description = description;
             ImageUrl = imageUrl;
         }
 
-        public void SetTypes(PokemonTypeId primaryTypeId, PokemonTypeId? secondaryTypeId)
+        public void UpdateTypes(PokemonTypeId primaryTypeId, PokemonTypeId? secondaryTypeId)
         {
             PrimaryTypeId = Guard.Against.Null(primaryTypeId, nameof(primaryTypeId));
             SecondaryTypeId = secondaryTypeId;
         }
     }
 
-    public class PokemonId : Id<PokemonId>
+    public class PokemonFormId : Id<PokemonFormId>
     {
-        public PokemonId(int value) : base(value)
+        public PokemonFormId(int value) : base(value)
         {
         }
     }
